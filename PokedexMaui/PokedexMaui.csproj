@@ -70,4 +70,11 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="10.0.0" />
 	</ItemGroup>
 
+	<!-- Evita el error MSB4018 "GetLatestMSVCVersion" del compilador XAML de Windows App SDK
+	     cuando Visual Studio no tiene instaladas las herramientas de C++ (no se usan en un proyecto C#). -->
+	<PropertyGroup Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">
+		<VCInstallPath32>NotUsed</VCInstallPath32>
+		<VCInstallPath64>NotUsed</VCInstallPath64>
+	</PropertyGroup>
+
 </Project>
