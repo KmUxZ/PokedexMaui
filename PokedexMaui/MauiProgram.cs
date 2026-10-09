@@ -24,7 +24,16 @@ public static class MauiProgram
         });
 
         builder.Services.AddSingleton<PokeApiService>();
+
+        // vPIC: su propio HttpClient con otra dirección base. Timeout mayor porque la lista es grande.
+        builder.Services.AddSingleton(_ => new VehicleApiService(new HttpClient
+        {
+            BaseAddress = new Uri("https://vpic.nhtsa.dot.gov/api/"),
+            Timeout = TimeSpan.FromSeconds(30)
+        }));
+
         builder.Services.AddTransient<MainPage>();
+        builder.Services.AddTransient<VehiclesPage>();
 
 #if DEBUG
         builder.Logging.AddDebug();
