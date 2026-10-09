@@ -81,6 +81,13 @@
                     </Grid>
                 </VerticalStackLayout>
             </Border>
+            <!-- Reto Parte 13: acceso a la pantalla de fabricantes de vehículos -->
+            <Button Text="Ver fabricantes de vehículos (vPIC)"
+                    Clicked="OnVehiclesClicked"
+                    BackgroundColor="#17365D"
+                    TextColor="White"
+                    Margin="0,12,0,0" />
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

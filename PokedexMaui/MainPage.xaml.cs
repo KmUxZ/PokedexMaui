@@ -7,12 +7,14 @@ namespace PokedexMaui;
 public partial class MainPage : ContentPage
 {
     private readonly PokeApiService _pokeApiService;
+    private readonly VehiclesPage _vehiclesPage;
     private CancellationTokenSource? _searchCts;
 
-    public MainPage(PokeApiService pokeApiService)
+    public MainPage(PokeApiService pokeApiService, VehiclesPage vehiclesPage)
     {
         InitializeComponent();
         _pokeApiService = pokeApiService;
+        _vehiclesPage = vehiclesPage;
     }
 
     private async void OnSearchClicked(object? sender, EventArgs e)
@@ -61,6 +63,11 @@ public partial class MainPage : ContentPage
         {
             SetLoading(false);
         }
+    }
+
+    private async void OnVehiclesClicked(object? sender, EventArgs e)
+    {
+        await Navigation.PushAsync(_vehiclesPage);
     }
 
     private void ShowPokemon(PokemonResponse pokemon)
